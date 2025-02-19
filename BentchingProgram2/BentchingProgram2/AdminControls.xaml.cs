@@ -21,24 +21,11 @@ public partial class AdminControls : ContentPage
         };
     }
 
-    private async Task<bool> PromptBeforeDelete(object obj)
+    private async Task<bool> PromptBeforeDelete(IDeleteable obj, string s)
     {
-        string s = "";
-        if (obj is bizEarningYear bey)
-        {
-            s = bey.EarningYear.ToString();
-        }
-        else if (obj is bizParsha bp)
-        {
-            s = bp.ParshaNameEnglish;
-        }
-        else if (obj is bizMember m)
-        {
-            s = m.FirstName;
-        }
-        return await DisplayAlert(this.ToString(), $"Are you sure you want to delete {s}", "Yes", "No");
+        return await DisplayAlert(this.ToString(), $"Are you sure you want to delete {s}?", "Yes", "No");
     }
-    private async Task DeleteItem<T>(T item) where T : IDeleteable
+    private async Task DeleteItem(IDeleteable item)
     {
         await item.Delete();
     }
@@ -124,14 +111,13 @@ public partial class AdminControls : ContentPage
     }
     private async void Delete_Clicked(object sender, EventArgs e)
     {
-        if (sender is Button b)
+        if (sender is Button b && b.Parent.BindingContext is IDeleteable context)
         {
-            object context = b.Parent.BindingContext;
-            if(await PromptBeforeDelete(context))
+            if(await PromptBeforeDelete(context, context.Name))
             {
                 try
                 {
-                    await DeleteItem<IDeleteable>((IDeleteable)context);
+                    await DeleteItem(context);
                 }
                 catch (Exception ex)
                 {

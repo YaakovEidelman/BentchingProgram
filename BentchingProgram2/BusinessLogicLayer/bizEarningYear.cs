@@ -13,6 +13,8 @@ namespace BusinessLogicLayer
         public int EarningYearId { get; set; }
         public int EarningYear { get; set; }
 
+
+        public string Name { get => this.EarningYear.ToString(); }
         public async Task Delete()
         {
             SqlCommand cmd = SQLExecuter.GetSqlCommand(DeleteSproc);

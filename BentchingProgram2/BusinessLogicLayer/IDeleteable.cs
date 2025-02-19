@@ -3,6 +3,6 @@
     public interface IDeleteable
     {
         Task Delete();
-
+        string Name { get; }
     }
 }

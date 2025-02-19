@@ -78,6 +78,7 @@ namespace BusinessLogicLayer
             }
         }
 
+        public string Name { get => this.FirstName; }
         public async Task Delete()
         {
             SqlCommand cmd = SQLExecuter.GetSqlCommand(DeleteSproc);

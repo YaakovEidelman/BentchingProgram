@@ -19,6 +19,7 @@ namespace BusinessLogicLayer
         public string ParshaName { get; set; } = "";
         public string ParshaNameEnglish { get; set; } = "";
 
+        public string Name { get => this.ParshaName; }
         public async Task Delete()
         {
             SqlCommand cmd = SQLExecuter.GetSqlCommand(DeleteSproc);
