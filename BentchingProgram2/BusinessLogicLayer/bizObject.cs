@@ -56,12 +56,14 @@ namespace BusinessLogicLayer
             await SQLExecuter.ExecuteSqlCrud(cmd);
         }
 
-        public async Task Delete(int id)
-        {
-            SqlCommand cmd = SQLExecuter.GetSqlCommand(_sprocdelete);
-            cmd.Parameters[$"@{_type.Substring(3)}Id"].Value = id;
-            await SQLExecuter.ExecuteSqlCrud(cmd);
-        }
+        public string DeleteSproc { get => _sprocdelete; }
+
+        //public async Task Delete(int id)
+        //{
+        //    SqlCommand cmd = SQLExecuter.GetSqlCommand(_sprocdelete);
+        //    cmd.Parameters[$"@{_type.Substring(3)}Id"].Value = id;
+        //    await SQLExecuter.ExecuteSqlCrud(cmd);
+        //}
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void InvokePropertyChanged([CallerMemberName] string prop = "")

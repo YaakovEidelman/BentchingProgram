@@ -38,22 +38,9 @@ public partial class AdminControls : ContentPage
         }
         return await DisplayAlert(this.ToString(), $"Are you sure you want to delete {s}", "Yes", "No");
     }
-    private async Task DeleteItem(object item)
+    private async Task DeleteItem<T>(T item) where T : IDeleteable
     {
-        if (item is bizEarningYear bey)
-        {
-            await bey.Delete(bey.EarningYearId);
-            await _viewmodelbinder.LoadEarningYearList();
-        }
-        else if (item is bizParsha bp)
-        {
-            await bp.Delete(bp.ParshaId);
-            await _viewmodelbinder.LoadParshaList();
-        } else if (item is bizMember m)
-        {
-            await m.Delete(m.MemberId);
-            await _viewmodelbinder.LoadMemberList();
-        }
+        await item.Delete();
     }
     private void SetPanelAndNav(Border b)
     {
@@ -137,15 +124,19 @@ public partial class AdminControls : ContentPage
     }
     private async void Delete_Clicked(object sender, EventArgs e)
     {
-        if (sender is Button b && await PromptBeforeDelete(b.Parent.BindingContext))
+        if (sender is Button b)
         {
-            try
+            object context = b.Parent.BindingContext;
+            if(await PromptBeforeDelete(context))
             {
-                await DeleteItem(b.Parent.BindingContext);
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert(this.ToString(), ex.Message, "Close");
+                try
+                {
+                    await DeleteItem<IDeleteable>((IDeleteable)context);
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert(this.ToString(), ex.Message, "Close");
+                }
             }
         }
     }

@@ -1,6 +1,9 @@
-﻿namespace BusinessLogicLayer
+﻿using DataAccessLayer;
+using Microsoft.Data.SqlClient;
+
+namespace BusinessLogicLayer
 {
-    public class bizMember : bizObject<bizMember>
+    public class bizMember : bizObject<bizMember>, IDeleteable
     {
         private int _memberid;
         private string _firstname = "";
@@ -73,6 +76,13 @@
                 _finaltotal = value;
                 InvokePropertyChanged();
             }
+        }
+
+        public async Task Delete()
+        {
+            SqlCommand cmd = SQLExecuter.GetSqlCommand(DeleteSproc);
+            cmd.Parameters["@MemberId"].Value = this.MemberId;
+            await SQLExecuter.ExecuteSqlCrud(cmd);
         }
 
     }
