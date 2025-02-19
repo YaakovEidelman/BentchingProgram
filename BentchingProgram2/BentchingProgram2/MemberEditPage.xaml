@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BentchingProgram2.MemberEditPage"
+             Title="MemberEditPage">
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+        <Border BackgroundColor="#F8F8F8" StrokeThickness="0" Margin="15" Padding="10">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="Black" Radius="5" Opacity="0.3"/>
+            </Border.Shadow>
+            <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*,3*" ColumnSpacing="5" RowSpacing="10">
+                <Label Text="Enter Member Details" FontSize="22" HorizontalTextAlignment="Center" Grid.ColumnSpan="2"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Firstname:" FontSize="20" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                <Entry Grid.Row="1" Grid.Column="1" Placeholder="Firstname..." FontSize="18" x:Name="EnterFirstName"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Lastname:" FontSize="20" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                <Entry Grid.Row="2" Grid.Column="1" Placeholder="Lastname..." FontSize="18" x:Name="EnterLastName"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Birthdate:" FontSize="20" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                <DatePicker Grid.Row="3" Grid.Column="1" x:Name="EnterBirthdate" FontSize="18" MinimumWidthRequest="300"/>
+
+                <Label Grid.Row="4" Grid.Column="0" Text="Paid Up:" FontSize="20" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                <Entry Grid.Row="4" Grid.Column="1" x:Name="EnterAmountPaidUp" Placeholder="Paid Up..." FontSize="18" Keyboard="Numeric"/>
+
+                <Grid ColumnDefinitions="*,*" Grid.Row="5" Grid.ColumnSpan="2" ColumnSpacing="5">
+                    <Button Grid.Column="0" Text="Cancel" Clicked="Cancel_Clicked"/>
+                    <Button Grid.Column="1" Text="Save" Clicked="Save_Clicked"/>
+                </Grid>
+                
+            </Grid>
+        </Border>
+
+    </VerticalStackLayout>
+</ContentPage>

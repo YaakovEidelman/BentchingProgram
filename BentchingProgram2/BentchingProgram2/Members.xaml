@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ViewModel;assembly=ViewModel"
+             xmlns:localtwo="clr-namespace:BusinessLogicLayer;assembly=BusinessLogicLayer"
+             x:Class="BentchingProgram2.Members"
+             x:DataType="local:ViewModelBinder"
+             Title="Members">
+
+
+    <Grid RowDefinitions="*">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition x:Name="DynamicCol" Width="0"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Members List Panel -->
+        <Border Grid.Row="0" Grid.Column="0" BackgroundColor="#F5F5F5" StrokeThickness="0" Padding="15" Margin="15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="Black" Radius="5" Opacity="0.3"/>
+            </Border.Shadow>
+
+            <Grid Padding="15" RowDefinitions="Auto, Auto, *">
+                <Label Text="Members List" FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+
+                <Grid Grid.Row="1" ColumnDefinitions="*,*,*,*,*" Padding="5">
+                    <Label Grid.Column="0" Text="First Name" FontAttributes="Bold"/>
+                    <Label Grid.Column="1" Text="Last Name" FontAttributes="Bold"/>
+                    <Label Grid.Column="2" Text="Sub Total" FontAttributes="Bold"/>
+                    <Label Grid.Column="3" Text="Amount Paid Up" FontAttributes="Bold"/>
+                    <Label Grid.Column="4" Text="Total" FontAttributes="Bold"/>
+                </Grid>
+
+                <CollectionView Grid.Row="2" x:Name="MembersList" SelectionMode="Single" ItemsSource="{Binding MemberList}">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid ColumnDefinitions="*,*,*,*,*" Padding="5" x:DataType="localtwo:bizMember">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Grid.GestureRecognizers>
+                                <Label Grid.Column="0" Text="{Binding FirstName}"/>
+                                <Label Grid.Column="1" Text="{Binding LastName}"/>
+                                <Label Grid.Column="2" Text="{Binding SubTotal}"/>
+                                <Label Grid.Column="3" Text="{Binding AmountPaidUp}"/>
+                                <Label Grid.Column="4" Text="{Binding FinalTotal}"/>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+        </Border>
+
+        <!-- Member Details Panel -->
+        <Border x:Name="DetailPanel" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" BackgroundColor="#F5F5F5" Padding="15" Margin="15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="Black" Radius="5" Opacity="0.3"/>
+            </Border.Shadow>
+
+            <Grid RowDefinitions="auto,auto,*,auto" ColumnDefinitions="*">
+                <VerticalStackLayout Spacing="10" Grid.Row="0" Grid.ColumnSpan="2" BindingContext="{Binding Member}" x:DataType="localtwo:bizMember">
+                    <Label Text="{Binding FirstName}" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" Padding="0,15,0,0"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" VerticalOptions="Center">
+
+                    <Grid ColumnDefinitions="*,*" Padding="15">
+                        <!-- Parsha Dropdown -->
+                        <VerticalStackLayout Spacing="5" Grid.Column="0">
+                            <Label Text="Parsha" />
+                            <Border Stroke="#D3D3D3" BackgroundColor="#F0F0F0" Padding="0" StrokeShape="RoundRectangle 5,5">
+                                <Picker x:Name="ParshaPicker" SelectedIndex="-1" ItemsSource="{Binding ParshaList}" ItemDisplayBinding="{Binding ParshaName}" SelectedItem="{Binding Parsha}"/>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Year Dropdown -->
+                        <VerticalStackLayout Spacing="5" Grid.Column="1">
+                            <Label Text="Year" />
+                            <Border Stroke="#D3D3D3" BackgroundColor="#F0F0F0" Padding="0" StrokeShape="RoundRectangle 5,5">
+                                <Picker SelectedIndex="-1" ItemsSource="{Binding EarningYearList}" ItemDisplayBinding="{Binding EarningYear}" SelectedItem="{Binding EarningYear}"/>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- Amount Input -->
+                    <VerticalStackLayout Spacing="10" Padding="15" >
+                        <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*" RowSpacing="5">
+                            <Label Text="Amount" />
+                            <Border Stroke="#D3D3D3" BackgroundColor="#F0F0F0" Padding="0" StrokeShape="RoundRectangle 5,5" Grid.Row="1">
+                                <Entry x:Name="AmountEntry" Placeholder="Enter amount" Text="{Binding Amount}"/>
+                            </Border>
+                            <Button Text="Add" Grid.Row="2" Clicked="AddBtn_Clicked"/>
+                        </Grid>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
+                <!-- Earning List and Actions -->
+                <Grid RowDefinitions="Auto, *" Grid.Row="2" Padding="15" Grid.ColumnSpan="2">
+                    <Grid ColumnDefinitions="*,*,*,*" Padding="5" Grid.Row="0">
+                        <Label Grid.Column="0" Text="Parsha" FontAttributes="Bold"/>
+                        <Label Grid.Column="1" Text="Parsha English" FontAttributes="Bold"/>
+                        <Label Grid.Column="2" Text="Year" FontAttributes="Bold"/>
+                        <Label Grid.Column="3" Text="Amount" FontAttributes="Bold"/>
+                    </Grid>
+
+                    <CollectionView x:Name="MemberEarning" SelectionMode="Single" Grid.Row="1" ItemsSource="{Binding MemberEarningDisplay}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,*,*,*" Padding="5" x:DataType="localtwo:bizMemberEarningDisplay">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="med_Tapped" />
+                                    </Grid.GestureRecognizers>
+                                    <Label Grid.Column="0" Text="{Binding ParshaName}"/>
+                                    <Label Grid.Column="1" Text="{Binding ParshaNameEnglish}"/>
+                                    <Label Grid.Column="2" Text="{Binding EarningYear}"/>
+                                    <Label Grid.Column="3" Text="{Binding Amount}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="End" Margin="0,15,0,0" Grid.Row="3">
+                    <Button x:Name="Close" Text="Close" TextColor="White" Padding="10,5" Clicked="Close_Clicked"/>
+                </HorizontalStackLayout>
+            </Grid>
+        </Border>
+
+        <!--<Border Grid.Row="1" Grid.Column="0" BackgroundColor="White" StrokeThickness="0" Padding="15" Margin="15, 0, 15, 15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="Black" Radius="5" Opacity="0.3"/>
+            </Border.Shadow>
+
+            <Button Text="Add Member" Padding="10" HorizontalOptions="End"/>
+        </Border>-->
+    </Grid>
+
+</ContentPage>
