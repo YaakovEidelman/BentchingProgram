@@ -37,7 +37,6 @@ public partial class AdminControls : ContentPage
             s = m.FirstName;
         }
         return await DisplayAlert(this.ToString(), $"Are you sure you want to delete {s}", "Yes", "No");
-
     }
     private async Task DeleteItem(object item)
     {
