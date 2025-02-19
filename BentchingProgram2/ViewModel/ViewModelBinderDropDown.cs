@@ -47,6 +47,17 @@ namespace ViewModel
                 OnPropertyChanged();
             }
         }
+        public string ParshaName
+        {
+            get
+            {
+                if(Parsha != null)
+                {
+                    return Parsha.ParshaName;
+                }
+                return "";
+            }
+        }
         public int ParshaId
         {
             get => _parshaid;

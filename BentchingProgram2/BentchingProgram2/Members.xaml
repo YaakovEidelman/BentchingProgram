@@ -40,7 +40,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
 
-                            <Grid ColumnDefinitions="*,*,*,*,*" Padding="5" x:DataType="localtwo:bizMember">
+                            <Grid ColumnDefinitions="*,*,*,*,*" Padding="20" x:DataType="localtwo:bizMember">
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
