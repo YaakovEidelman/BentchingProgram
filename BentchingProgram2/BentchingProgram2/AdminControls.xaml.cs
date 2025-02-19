@@ -32,6 +32,10 @@ public partial class AdminControls : ContentPage
         {
             s = bp.ParshaNameEnglish;
         }
+        else if (obj is bizMember m)
+        {
+            s = m.FirstName;
+        }
         return await DisplayAlert(this.ToString(), $"Are you sure you want to delete {s}", "Yes", "No");
 
     }
