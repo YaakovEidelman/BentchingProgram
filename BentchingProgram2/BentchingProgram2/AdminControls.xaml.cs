@@ -38,13 +38,6 @@ public partial class AdminControls : ContentPage
             }
         }
     }
-    private async Task UpsertItem(object sender, params (string, object)[] sprocparams)
-    {
-        if(sender is Button b)
-        {
-
-        }
-    }
     private void SetPanelAndNav(Border b)
     {
         foreach (KeyValuePair<Border, Grid> kvp in navcontentpairs)
