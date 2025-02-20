@@ -35,9 +35,9 @@ public partial class ParshaEditPage : ContentPage
 		try
 		{
 			await new bizParsha().Update(
-				("@ParshaId", _id), 
-				("@ParshaName", EnterParshaHeb.Text), 
-				("@ParshaNameEnglish", EnterParsha.Text)
+				($"@{nameof(bizParsha.ParshaId)}", _id), 
+				($"@{nameof(bizParsha.ParshaName)}", EnterParshaHeb.Text), 
+				($"@{nameof(bizParsha.ParshaNameEnglish)}", EnterParsha.Text)
 			);
 			await _viewmodelbinder.LoadParshaList();
 			await Navigation.PopModalAsync();

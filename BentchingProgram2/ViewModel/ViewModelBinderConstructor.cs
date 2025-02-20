@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using BusinessLogicLayer;
 
 namespace ViewModel
 {
@@ -23,11 +24,11 @@ namespace ViewModel
             await this.LoadMemberEarning();
 
             await this.MemberEarning.Update(
-                ("@MemberEarningId", MemberEarning.MemberEarningId),
-                ("@MemberId", MemberEarning.MemberId),
-                ("@ParshaId", MemberEarning.ParshaId),
-                ("@EarningYearId", MemberEarning.EarningYearId),
-                ("@Amount", amount)
+                ($"@{nameof(bizMemberEarning.MemberEarningId)}", MemberEarning.MemberEarningId),
+                ($"@{nameof(bizMemberEarning.MemberId)}", MemberEarning.MemberId),
+                ($"@{nameof(bizMemberEarning.ParshaId)}", MemberEarning.ParshaId),
+                ($"@{nameof(bizMemberEarning.EarningYearId)}", MemberEarning.EarningYearId),
+                ($"@{nameof(bizMemberEarning.Amount)}", amount)
             );
             await this.LoadMemberList();
             this.LoadMember(id);

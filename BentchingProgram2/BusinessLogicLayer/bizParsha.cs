@@ -20,7 +20,7 @@ namespace BusinessLogicLayer
         public async Task Delete()
         {
             SqlCommand cmd = SQLExecuter.GetSqlCommand(DeleteSproc);
-            cmd.Parameters["@ParshaId"].Value = this.ParshaId;
+            cmd.Parameters[$"@{nameof(ParshaId)}"].Value = this.ParshaId;
             await SQLExecuter.ExecuteSqlCrud(cmd);
         }
     }

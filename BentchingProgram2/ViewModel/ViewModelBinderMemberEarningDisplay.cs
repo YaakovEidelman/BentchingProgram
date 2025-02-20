@@ -40,7 +40,7 @@ namespace ViewModel
         {
             List<bizMemberEarning> lst;
 
-            lst = await _bizmemberearning.Load(Member.MemberId, ("@ParshaId", ParshaId), ("@EarningYearId", EarningYearId));
+            lst = await _bizmemberearning.Load(Member.MemberId, ($"@{nameof(bizParsha.ParshaId)}", ParshaId), ($"@{nameof(bizEarningYear.EarningYearId)}", EarningYearId));
             if (lst[0] != null)
             {
                 MemberEarning = lst[0];

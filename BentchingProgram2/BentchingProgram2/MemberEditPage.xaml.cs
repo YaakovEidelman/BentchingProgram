@@ -41,11 +41,11 @@ public partial class MemberEditPage : ContentPage
 		try
 		{
 			await new bizMember().Update(
-				("@MemberId", _id),
-				("@FirstName", EnterFirstName.Text),
-				("@LastName", EnterLastName.Text),
-				("@BirthDate", EnterBirthdate.Date),
-				("@AmountPaidUp", EnterAmountPaidUp.Text)
+				($"@{nameof(bizMember.MemberId)}", _id),
+				($"@{nameof(bizMember.FirstName)}", EnterFirstName.Text),
+				($"@{nameof(bizMember.LastName)}", EnterLastName.Text),
+				($"@{nameof(bizMember.BirthDate)}", EnterBirthdate.Date),
+				($"@{nameof(bizMember.AmountPaidUp)}", EnterAmountPaidUp.Text)
 			);
 			await _viewmodelbinder.LoadMemberList();
 			await Navigation.PopModalAsync();

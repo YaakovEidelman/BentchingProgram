@@ -30,8 +30,8 @@ public partial class YearEditPage : ContentPage
         try
         {
             await new bizEarningYear().Update(
-                ("@EarningYearId", _id),
-                ("@EarningYear", EnterYear.Text)
+                ($"@{nameof(bizEarningYear.EarningYearId)}", _id),
+                ($"@{nameof(bizEarningYear.EarningYear)}", EnterYear.Text)
             );
             await _viewmodelbinder.LoadEarningYearList();
             await Navigation.PopModalAsync();

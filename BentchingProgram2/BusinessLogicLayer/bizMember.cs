@@ -84,7 +84,7 @@ namespace BusinessLogicLayer
         public async Task Delete()
         {
             SqlCommand cmd = SQLExecuter.GetSqlCommand(DeleteSproc);
-            cmd.Parameters["@MemberId"].Value = this.MemberId;
+            cmd.Parameters[$"@{nameof(MemberId)}"].Value = this.MemberId;
             await SQLExecuter.ExecuteSqlCrud(cmd);
         }
 
