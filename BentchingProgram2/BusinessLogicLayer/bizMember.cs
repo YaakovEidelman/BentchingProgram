@@ -78,6 +78,8 @@ namespace BusinessLogicLayer
             }
         }
 
+
+        public string ReloadListName { get => "LoadMemberList"; }
         public string Name { get => this.FirstName; }
         public async Task Delete()
         {

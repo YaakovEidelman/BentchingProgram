@@ -14,6 +14,7 @@ namespace BusinessLogicLayer
         public int EarningYear { get; set; }
 
 
+        public string ReloadListName { get => "LoadEarningYearList"; }
         public string Name { get => this.EarningYear.ToString(); }
         public async Task Delete()
         {

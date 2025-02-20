@@ -23,11 +23,17 @@ public partial class AdminControls : ContentPage
 
     private async Task<bool> PromptBeforeDelete(IDeleteable obj, string s)
     {
+        await DisplayAlert("Text", obj.GetType().ToString(), "Close");
         return await DisplayAlert(this.ToString(), $"Are you sure you want to delete {s}?", "Yes", "No");
     }
     private async Task DeleteItem(IDeleteable item)
     {
         await item.Delete();
+        var method = _viewmodelbinder.GetType().GetMethod(item.ReloadListName);
+        if (method != null)
+        {
+            await (Task)method.Invoke(_viewmodelbinder, null);
+        }
     }
     private void SetPanelAndNav(Border b)
     {
@@ -75,10 +81,10 @@ public partial class AdminControls : ContentPage
 
     private async void AddMember_Clicked(object sender, EventArgs e)
     {
-        if(sender is Button)
+        if (sender is Button)
         {
             await Navigation.PushModalAsync(new MemberEditPage(_viewmodelbinder));
-        } 
+        }
         else if (sender is Grid g)
         {
             bizMember m = (bizMember)g.BindingContext;
@@ -113,7 +119,7 @@ public partial class AdminControls : ContentPage
     {
         if (sender is Button b && b.Parent.BindingContext is IDeleteable context)
         {
-            if(await PromptBeforeDelete(context, context.Name))
+            if (await PromptBeforeDelete(context, context.Name))
             {
                 try
                 {

@@ -1,10 +1,5 @@
 ﻿using DataAccessLayer;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicLayer
 {
@@ -19,6 +14,8 @@ namespace BusinessLogicLayer
         public string ParshaName { get; set; } = "";
         public string ParshaNameEnglish { get; set; } = "";
 
+
+        public string ReloadListName { get => "LoadParshaList"; }
         public string Name { get => this.ParshaName; }
         public async Task Delete()
         {
