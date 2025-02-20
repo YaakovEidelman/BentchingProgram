@@ -32,8 +32,7 @@ public partial class AdminControls : ContentPage
         MethodInfo? method = _viewmodelbinder.GetType().GetMethod(item.ReloadListName);
         if (method != null)
         {
-            var task = method.Invoke(_viewmodelbinder, null) as Task;
-            if (task != null)
+            if (method.Invoke(_viewmodelbinder, null) is Task task)
             {
                 await task;
             }
