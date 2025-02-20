@@ -1,4 +1,5 @@
 using BusinessLogicLayer;
+using System.Reflection;
 using ViewModel;
 
 namespace BentchingProgram2;
@@ -23,16 +24,26 @@ public partial class AdminControls : ContentPage
 
     private async Task<bool> PromptBeforeDelete(IDeleteable obj, string s)
     {
-        await DisplayAlert("Text", obj.GetType().ToString(), "Close");
         return await DisplayAlert(this.ToString(), $"Are you sure you want to delete {s}?", "Yes", "No");
     }
     private async Task DeleteItem(IDeleteable item)
     {
         await item.Delete();
-        var method = _viewmodelbinder.GetType().GetMethod(item.ReloadListName);
+        MethodInfo? method = _viewmodelbinder.GetType().GetMethod(item.ReloadListName);
         if (method != null)
         {
-            await (Task)method.Invoke(_viewmodelbinder, null);
+            var task = method.Invoke(_viewmodelbinder, null) as Task;
+            if (task != null)
+            {
+                await task;
+            }
+        }
+    }
+    private async Task UpsertItem(object sender, params (string, object)[] sprocparams)
+    {
+        if(sender is Button b)
+        {
+
         }
     }
     private void SetPanelAndNav(Border b)
