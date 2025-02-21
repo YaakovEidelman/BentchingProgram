@@ -8,7 +8,12 @@ namespace DataAccessLayer
 {
     public class SQLExecuter
     {
-        private static string ConnectionString = @"Server=.\SQLExpress;Database=BentchingProgram;Trusted_Connection=True;TrustServerCertificate=True;";
+        private static string ConnectionString = "";
+
+        public static void SetConn(string conn)
+        {
+            ConnectionString = conn;
+        }
 
         public static SqlCommand GetSqlCommand(string sproc)
         {

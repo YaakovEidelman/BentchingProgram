@@ -5,6 +5,7 @@
 
 # Custom
 create-credentials.sql
+secret-appsettings.json
 
 # User-specific files
 *.rsuser
