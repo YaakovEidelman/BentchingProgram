@@ -17,4 +17,5 @@ begin
     order by ey.EarningYear desc, p.ParshaId desc
 end 
 go
---exec MemberEarningRead @MemberId = 1
+
+GRANT EXECUTE ON MemberEarningDisplayRead TO basicuserrole

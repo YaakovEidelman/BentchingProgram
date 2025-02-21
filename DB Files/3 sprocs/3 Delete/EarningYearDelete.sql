@@ -1,4 +1,4 @@
-CREATE PROCEDURE EarningYearDelete(
+CREATE OR ALTER PROCEDURE EarningYearDelete(
     @EarningYearId INT = 0
 )
 AS
@@ -14,3 +14,5 @@ BEGIN
     END CATCH
 END
 GO
+
+GRANT EXECUTE ON EarningYearDelete TO basicuserrole

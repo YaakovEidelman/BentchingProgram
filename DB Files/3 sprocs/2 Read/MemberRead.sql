@@ -11,3 +11,5 @@ begin
     order by BirthDate
 end 
 go
+
+GRANT EXECUTE ON MemberRead TO basicuserrole

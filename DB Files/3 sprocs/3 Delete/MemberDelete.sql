@@ -1,4 +1,4 @@
-CREATE PROCEDURE MemberDelete(
+CREATE OR ALTER PROCEDURE MemberDelete(
     @MemberId INT = 0
 )
 AS
@@ -14,3 +14,5 @@ BEGIN
     END CATCH
 END
 GO
+
+GRANT EXECUTE ON MemberDelete TO basicuserrole

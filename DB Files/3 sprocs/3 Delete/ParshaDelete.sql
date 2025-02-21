@@ -1,4 +1,4 @@
-CREATE PROCEDURE ParshaDelete(
+CREATE OR ALTER PROCEDURE ParshaDelete(
     @ParshaId INT = 0
 )
 AS
@@ -14,3 +14,4 @@ BEGIN
     END CATCH
 END
 GO
+GRANT EXECUTE ON ParshaDelete TO basicuserrole

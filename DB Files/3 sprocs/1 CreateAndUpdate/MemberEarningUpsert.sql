@@ -52,3 +52,5 @@ begin
     end catch
 end
 go
+
+GRANT EXECUTE ON MemberEarningUpsert TO basicuserrole

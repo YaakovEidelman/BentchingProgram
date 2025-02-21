@@ -8,3 +8,5 @@ begin
     where @All = 1
 end
 go
+
+GRANT EXECUTE ON EarningYearRead TO basicuserrole

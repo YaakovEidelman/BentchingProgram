@@ -35,3 +35,5 @@ begin
         end catch
     end
 end
+GO
+GRANT EXECUTE ON EarningYearUpsert TO basicuserrole

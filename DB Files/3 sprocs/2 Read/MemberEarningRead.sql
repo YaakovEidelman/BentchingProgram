@@ -37,3 +37,5 @@ begin
     from @t
 end 
 go
+
+GRANT EXECUTE ON MemberEarningRead TO basicuserrole

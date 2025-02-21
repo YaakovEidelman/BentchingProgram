@@ -7,3 +7,5 @@ begin
     from Parsha
 end 
 go
+
+GRANT EXECUTE ON ParshaRead TO basicuserrole

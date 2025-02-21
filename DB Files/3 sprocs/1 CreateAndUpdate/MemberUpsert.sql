@@ -42,3 +42,4 @@ begin
     end
 end
 go
+GRANT EXECUTE ON MemberUpsert TO basicuserrole

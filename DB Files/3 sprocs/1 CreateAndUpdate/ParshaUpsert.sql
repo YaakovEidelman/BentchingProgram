@@ -37,3 +37,5 @@ begin
         end catch
     end
 end
+GO
+GRANT EXECUTE ON ParshaUpsert TO basicuserrole
