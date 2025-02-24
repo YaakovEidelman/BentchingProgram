@@ -119,9 +119,9 @@ namespace DataAccessLayer
                 }
 
                 val = sb.ToString();
-#endif
             }
-                return val;
+#endif
+            return val;
         }
 
     }
