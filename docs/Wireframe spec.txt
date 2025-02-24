@@ -1,0 +1,25 @@
+Sidebar Navigation
+Dashboard (Overview of earnings, totals, and recent activity)
+Members (List of members with search and add/edit functionality)
+Parsha (Manage Parsha names)
+Earnings (Track earnings by year, Parsha, and member)
+Reports (Generate summaries of earnings per year or member)
+Settings (Any configuration options)
+Main Content Layout
+Dashboard View
+
+Quick summary of earnings, totals, and member activity.
+Charts for earnings distribution (optional).
+Members Management
+
+DataGridView showing all members.
+Button to add/edit/delete members.
+Detail panel for selected member info.
+Parsha Management
+
+List of Parsha names.
+Option to add/edit/delete Parsha.
+Earnings Tracking
+
+DataGridView showing earnings with filtering by year/member.
+Inline editing or a separate form to add/edit earnings.
