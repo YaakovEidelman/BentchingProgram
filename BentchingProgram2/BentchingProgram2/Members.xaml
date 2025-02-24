@@ -99,7 +99,7 @@
                             <Border Stroke="#D3D3D3" BackgroundColor="#F0F0F0" Padding="0" StrokeShape="RoundRectangle 5,5" Grid.Row="1">
                                 <Entry x:Name="AmountEntry" Placeholder="Enter amount" Text="{Binding Amount}"/>
                             </Border>
-                            <Button Text="Add" Grid.Row="2" Clicked="AddBtn_Clicked"/>
+                            <Button Text="Save" Grid.Row="2" Clicked="AddBtn_Clicked"/>
                         </Grid>
                     </VerticalStackLayout>
 

@@ -18,7 +18,8 @@ public partial class AdminControls : ContentPage
         {
             {Nav_Members, Members },
             {Nav_Years, Years },
-            {Nav_Parshas, Parshas }
+            {Nav_Parshas, Parshas },
+            {Nav_Settings, Settings }
         };
     }
 
@@ -79,6 +80,27 @@ public partial class AdminControls : ContentPage
         if (sender is Border hovnav)
         {
             await hovnav.ScaleTo(1.0, 100, Easing.CubicInOut);
+        }
+    }
+    private async void PasswordUpdate_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            if(EnterUpdateVerify.Text != EnterUpdatePass.Text)
+            {
+                await DisplayAlert(this.ToString(), "Please Verify Password", "Close");
+                return;
+            }
+            if(EnterUpdatePass.Text != "" && EnterUpdateUsername.Text != "")
+            {
+                await SecureStorage.SetAsync("Password", EnterUpdatePass.Text);
+                await SecureStorage.SetAsync("Username", EnterUpdateUsername.Text);
+                await DisplayAlert(this.ToString(), "Password Updated", "Close");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert(this.ToString(), ex.Message, "Close");
         }
     }
 
