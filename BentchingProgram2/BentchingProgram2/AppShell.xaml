@@ -16,7 +16,6 @@
     <TabBar>
 
         <Tab Title="Members" Icon="members.png">
-            
             <ShellContent
         Title="Members"
         ContentTemplate="{DataTemplate local:Members}"
@@ -31,5 +30,9 @@
         </Tab>
 
     </TabBar>
+    
+    <Shell.ToolbarItems>
+        <ToolbarItem Text="Logout" IconImageSource="logout.png" Clicked="ToolbarItem_Clicked"/>
+    </Shell.ToolbarItems>
 
 </Shell>

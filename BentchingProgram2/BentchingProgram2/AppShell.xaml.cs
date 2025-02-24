@@ -6,5 +6,11 @@
         {
             InitializeComponent();
         }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            App.LoggedIn = false;
+            Navigation.PushModalAsync(new LoginPage());
+        }
     }
 }

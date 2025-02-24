@@ -5,7 +5,7 @@ namespace BentchingProgram2
 {
     public partial class App : Application
     {
-        public static bool AdminPermmisions = false;
+        public static bool LoggedIn = false;
         public static string ConnectionStringSetting = "";
         public App()
         {

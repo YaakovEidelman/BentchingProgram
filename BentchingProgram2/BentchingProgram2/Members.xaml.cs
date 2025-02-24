@@ -12,6 +12,15 @@ public partial class Members : ContentPage
         InitializeComponent();
         _viewmodelbinder = viewmodelbinder;
         this.BindingContext = _viewmodelbinder;
+        this.Loaded += Members_Loaded;
+    }
+
+    private void Members_Loaded(object? sender, EventArgs e)
+    {
+        if (!App.LoggedIn)
+        {
+            Navigation.PushModalAsync(new LoginPage());
+        }
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
@@ -33,7 +42,7 @@ public partial class Members : ContentPage
         bool isvalid = int.TryParse(AmountEntry.Text, out int amt);
         try
         {
-            if(!isvalid)
+            if (!isvalid)
             {
                 throw new Exception("Must enter numbers only");
             }
